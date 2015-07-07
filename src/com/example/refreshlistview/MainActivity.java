@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void run() {
-                        // 更新数据
+                        // 更新数据啊啊
                         datas.add(new Date().toGMTString());
                         adapter.notifyDataSetChanged();
                         // 更新完后调用该方法结束刷新
