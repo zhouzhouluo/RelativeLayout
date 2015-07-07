@@ -13,42 +13,42 @@ import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
 /**
- * ¼Ì³Ğ×ÔSwipeRefreshLayout,´Ó¶øÊµÏÖ»¬¶¯µ½µ×²¿Ê±ÉÏÀ­¼ÓÔØ¸ü¶àµÄ¹¦ÄÜ.
+ * ç»§æ‰¿è‡ªSwipeRefreshLayout,ä»è€Œå®ç°æ»‘åŠ¨åˆ°åº•éƒ¨æ—¶ä¸Šæ‹‰åŠ è½½æ›´å¤šçš„åŠŸèƒ½.
  * 
  * @author mrsimple
  */
 public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListener {
 
     /**
-     * »¬¶¯µ½×îÏÂÃæÊ±µÄÉÏÀ­²Ù×÷
+     * æ»‘åŠ¨åˆ°æœ€ä¸‹é¢æ—¶çš„ä¸Šæ‹‰æ“ä½œ
      */
 
     private int mTouchSlop;
     /**
-     * listviewÊµÀı
+     * listviewå®ä¾‹
      */
     private ListView mListView;
 
     /**
-     * ÉÏÀ­¼àÌıÆ÷, µ½ÁË×îµ×²¿µÄÉÏÀ­¼ÓÔØ²Ù×÷
+     * ä¸Šæ‹‰ç›‘å¬å™¨, åˆ°äº†æœ€åº•éƒ¨çš„ä¸Šæ‹‰åŠ è½½æ“ä½œ
      */
     private OnLoadListener mOnLoadListener;
 
     /**
-     * ListViewµÄ¼ÓÔØÖĞfooter
+     * ListViewçš„åŠ è½½ä¸­footer
      */
     private View mListViewFooter;
 
     /**
-     * °´ÏÂÊ±µÄy×ø±ê
+     * æŒ‰ä¸‹æ—¶çš„yåæ ‡
      */
     private int mYDown;
     /**
-     * Ì§ÆğÊ±µÄy×ø±ê, ÓëmYDownÒ»ÆğÓÃÓÚ»¬¶¯µ½µ×²¿Ê±ÅĞ¶ÏÊÇÉÏÀ­»¹ÊÇÏÂÀ­
+     * æŠ¬èµ·æ—¶çš„yåæ ‡, ä¸mYDownä¸€èµ·ç”¨äºæ»‘åŠ¨åˆ°åº•éƒ¨æ—¶åˆ¤æ–­æ˜¯ä¸Šæ‹‰è¿˜æ˜¯ä¸‹æ‹‰
      */
     private int mLastY;
     /**
-     * ÊÇ·ñÔÚ¼ÓÔØÖĞ ( ÉÏÀ­¼ÓÔØ¸ü¶à )
+     * æ˜¯å¦åœ¨åŠ è½½ä¸­ ( ä¸Šæ‹‰åŠ è½½æ›´å¤š )
      */
     private boolean isLoading = false;
 
@@ -71,14 +71,14 @@ public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListene
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        // ³õÊ¼»¯ListView¶ÔÏó
+        // åˆå§‹åŒ–ListViewå¯¹è±¡
         if (mListView == null) {
             getListView();
         }
     }
 
     /**
-     * »ñÈ¡ListView¶ÔÏó
+     * è·å–ListViewå¯¹è±¡
      */
     private void getListView() {
         int childs = getChildCount();
@@ -86,9 +86,9 @@ public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListene
             View childView = getChildAt(0);
             if (childView instanceof ListView) {
                 mListView = (ListView) childView;
-                // ÉèÖÃ¹ö¶¯¼àÌıÆ÷¸øListView, Ê¹µÃ¹ö¶¯µÄÇé¿öÏÂÒ²¿ÉÒÔ×Ô¶¯¼ÓÔØ
+                // è®¾ç½®æ»šåŠ¨ç›‘å¬å™¨ç»™ListView, ä½¿å¾—æ»šåŠ¨çš„æƒ…å†µä¸‹ä¹Ÿå¯ä»¥è‡ªåŠ¨åŠ è½½
                 mListView.setOnScrollListener(this);
-                Log.d(VIEW_LOG_TAG, "### ÕÒµ½listview");
+                Log.d(VIEW_LOG_TAG, "### æ‰¾åˆ°listview");
             }
         }
     }
@@ -103,17 +103,17 @@ public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListene
 
         switch (action) {
             case MotionEvent.ACTION_DOWN:
-                // °´ÏÂ
+                // æŒ‰ä¸‹
                 mYDown = (int) event.getRawY();
                 break;
 
             case MotionEvent.ACTION_MOVE:
-                // ÒÆ¶¯
+                // ç§»åŠ¨
                 mLastY = (int) event.getRawY();
                 break;
 
             case MotionEvent.ACTION_UP:
-                // Ì§Æğ
+                // æŠ¬èµ·
                 if (canLoad()) {
                     loadData();
                 }
@@ -126,7 +126,7 @@ public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListene
     }
 
     /**
-     * ÊÇ·ñ¿ÉÒÔ¼ÓÔØ¸ü¶à, Ìõ¼şÊÇµ½ÁË×îµ×²¿, listview²»ÔÚ¼ÓÔØÖĞ, ÇÒÎªÉÏÀ­²Ù×÷.
+     * æ˜¯å¦å¯ä»¥åŠ è½½æ›´å¤š, æ¡ä»¶æ˜¯åˆ°äº†æœ€åº•éƒ¨, listviewä¸åœ¨åŠ è½½ä¸­, ä¸”ä¸ºä¸Šæ‹‰æ“ä½œ.
      * 
      * @return
      */
@@ -135,7 +135,7 @@ public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListene
     }
 
     /**
-     * ÅĞ¶ÏÊÇ·ñµ½ÁË×îµ×²¿
+     * åˆ¤æ–­æ˜¯å¦åˆ°äº†æœ€åº•éƒ¨
      */
     private boolean isBottom() {
 
@@ -146,7 +146,7 @@ public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListene
     }
 
     /**
-     * ÊÇ·ñÊÇÉÏÀ­²Ù×÷
+     * æ˜¯å¦æ˜¯ä¸Šæ‹‰æ“ä½œ
      * 
      * @return
      */
@@ -155,11 +155,11 @@ public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListene
     }
 
     /**
-     * Èç¹ûµ½ÁË×îµ×²¿,¶øÇÒÊÇÉÏÀ­²Ù×÷.ÄÇÃ´Ö´ĞĞonLoad·½·¨
+     * å¦‚æœåˆ°äº†æœ€åº•éƒ¨,è€Œä¸”æ˜¯ä¸Šæ‹‰æ“ä½œ.é‚£ä¹ˆæ‰§è¡ŒonLoadæ–¹æ³•
      */
     private void loadData() {
         if (mOnLoadListener != null) {
-            // ÉèÖÃ×´Ì¬
+            // è®¾ç½®çŠ¶æ€
             setLoading(true);
             //
             mOnLoadListener.onLoad();
@@ -195,14 +195,14 @@ public class RefreshLayout extends SwipeRefreshLayout implements OnScrollListene
     @Override
     public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount,
             int totalItemCount) {
-        // ¹ö¶¯Ê±µ½ÁË×îµ×²¿Ò²¿ÉÒÔ¼ÓÔØ¸ü¶à
+        // æ»šåŠ¨æ—¶åˆ°äº†æœ€åº•éƒ¨ä¹Ÿå¯ä»¥åŠ è½½æ›´å¤š
         if (canLoad()) {
             loadData();
         }
     }
 
     /**
-     * ¼ÓÔØ¸ü¶àµÄ¼àÌıÆ÷
+     * åŠ è½½æ›´å¤šçš„ç›‘å¬å™¨
      * 
      * @author mrsimple
      */
