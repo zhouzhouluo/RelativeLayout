@@ -25,28 +25,28 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.refresh);
 
-        // Ä£ÄâÒ»Ğ©Êı¾İ
+        // æ¨¡æ‹Ÿä¸€äº›æ•°æ®
         final List<String> datas = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
             datas.add("item - " + i);
         }
 
-        // ¹¹ÔìÊÊÅäÆ÷
+        // æ„é€ é€‚é…å™¨æ·¡æ·¡çš„
         final BaseAdapter adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1,
                 datas);
-        // »ñÈ¡listviewÊµÀı
+        // è·å–listviewå®ä¾‹
         ListView listView = (ListView) findViewById(R.id.listview);
         listView.setAdapter(adapter);
 
-        // »ñÈ¡RefreshLayoutÊµÀı
+        // è·å–RefreshLayoutå®ä¾‹
         final RefreshLayout myRefreshListView = (RefreshLayout)
                 findViewById(R.id.swipe_layout);
 
-        // ÉèÖÃÏÂÀ­Ë¢ĞÂÊ±µÄÑÕÉ«Öµ,ÑÕÉ«ÖµĞèÒª¶¨ÒåÔÚxmlÖĞ
+        // è®¾ç½®ä¸‹æ‹‰åˆ·æ–°æ—¶çš„é¢œè‰²å€¼,é¢œè‰²å€¼éœ€è¦å®šä¹‰åœ¨xmlä¸­
         myRefreshListView.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,  
                 android.R.color.holo_orange_light, android.R.color.holo_purple); 
-        // ÉèÖÃÏÂÀ­Ë¢ĞÂ¼àÌıÆ÷
+        // è®¾ç½®ä¸‹æ‹‰åˆ·æ–°ç›‘å¬å™¨
         myRefreshListView.setOnRefreshListener(new OnRefreshListener() {
 
             @Override
@@ -58,17 +58,17 @@ public class MainActivity extends Activity {
 
                     @Override
                     public void run() {
-                        // ¸üĞÂÊı¾İ
+                        // æ›´æ–°æ•°æ®
                         datas.add(new Date().toGMTString());
                         adapter.notifyDataSetChanged();
-                        // ¸üĞÂÍêºóµ÷ÓÃ¸Ã·½·¨½áÊøË¢ĞÂ
+                        // æ›´æ–°å®Œåè°ƒç”¨è¯¥æ–¹æ³•ç»“æŸåˆ·æ–°
                         myRefreshListView.setRefreshing(false);
                     }
                 }, 3000);
             }
         });
 
-        // ¼ÓÔØ¼àÌıÆ÷
+        // åŠ è½½ç›‘å¬å™¨
         myRefreshListView.setOnLoadListener(new OnLoadListener() {
 
             @Override
@@ -82,7 +82,7 @@ public class MainActivity extends Activity {
                     public void run() {
                         datas.add(new Date().toGMTString());
                         adapter.notifyDataSetChanged();
-                        // ¼ÓÔØÍêºóµ÷ÓÃ¸Ã·½·¨
+                        // åŠ è½½å®Œåè°ƒç”¨è¯¥æ–¹æ³•
                         myRefreshListView.setLoading(false);
                     }
                 }, 3000);
