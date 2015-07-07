@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/abc_search_url_text_selected"
+    android:background="#05d5fc"
     android:gravity="center"
     android:paddingBottom="8dip"
     android:paddingTop="5dip" >

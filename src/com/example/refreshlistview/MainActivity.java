@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 
         // 设置下拉刷新时的颜色值,颜色值需要定义在xml中
         myRefreshListView.setColorScheme(android.R.color.holo_blue_bright, android.R.color.holo_green_light,  
-                android.R.color.holo_orange_light, android.R.color.holo_red_light); 
+                android.R.color.holo_orange_light, android.R.color.holo_purple); 
         // 设置下拉刷新监听器
         myRefreshListView.setOnRefreshListener(new OnRefreshListener() {
 
@@ -64,7 +64,7 @@ public class MainActivity extends Activity {
                         // 更新完后调用该方法结束刷新
                         myRefreshListView.setRefreshing(false);
                     }
-                }, 1000);
+                }, 3000);
             }
         });
 
@@ -85,7 +85,7 @@ public class MainActivity extends Activity {
                         // 加载完后调用该方法
                         myRefreshListView.setLoading(false);
                     }
-                }, 1500);
+                }, 3000);
 
             }
         });
