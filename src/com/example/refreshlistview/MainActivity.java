@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
 
         setContentView(R.layout.refresh);
 
-        // 模拟一些数据啊啊啊
+        // 模拟一些数据特色特停三天
         final List<String> datas = new ArrayList<String>();
         for (int i = 0; i < 20; i++) {
             datas.add("item - " + i);
